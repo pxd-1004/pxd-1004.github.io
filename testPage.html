@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicrosoftEdgeVisualSearch</title>
     <style>
-    img{
-        pointer-events: none;
-    }    
+     
     </style>
     <script>
         function allowDrop(ev) {
@@ -21,7 +19,7 @@
         function drop(ev) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("data");
-            ev.target.appendChild(document.getElementById(data));
+            ev.target.appendChild(document.getElementById("drag1"));
         }
     </script>
 </head>
