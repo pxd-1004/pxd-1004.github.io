@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicrosoftEdgeVisualSearch</title>
     <script>
-        $(function () {
-            $("#dragImg").draggable();
-            
-        });
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("data", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("data");
+            ev.target.appendChild(document.getElementById(data));
+        }
     </script>
 </head>
+
 <body>
-    <h3>Test Page..</h3>
-    <br />
-    <div id="draggable" class="ui-widget-content" style="width:500px;height:500px;border:1px solid blue">
-        <p>Drag me to my target</p>
-        <img id="dragImg" src="https://i.stack.imgur.com/fLqNf.png" width="300" height="200" alt="Alternate Text" />
+    <p>Drag the image into the rectangle:</p>
+    <div style="width: 350px;height: 350px;border: 1px solid black;" ondrop="drop(event)" ondragover="allowDrop(event)">
     </div>
-    <br />
-    <div id="droppable" class="ui-widget-header" style="width:500px;height:500px;border:1px solid blue">
-        <p>Drop here</p>
-    </div>
+    <img id="drag1"
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1122px-Wikipedia-logo-v2.svg.png"
+         draggable="true" ondragstart="drag(event)" width="350" height="350">
 </body>
 </html>
