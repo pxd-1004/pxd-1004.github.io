@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
     <title>MicrosoftEdgeVisualSearch</title>
-    <style>
-     img {
-         pointer-events: none;
-     }
-    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("data", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("data");
-            ev.target.appendChild(document.getElementById("drag1"));
-        }
+        $(function () {
+            $("#dragImg").draggable();
+            $("#droppable").droppable({
+                accept: "#dragImg",
+                drop: function (event, ui) {
+                    var droppable = $(this);
+                    var draggable = ui.draggable;
+                    // Move draggable into droppable
+                    draggable.appendTo(droppable);
+                    draggable.css({ top: '0px', left: '0px' });
+                }
+            });
+        });
     </script>
 </head>
-
 <body>
-    <p>Drag the image into the rectangle:</p>
-    <div style="width: 350px;height: 350px;border: 1px solid black;" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h3>Test Page..</h3>
+    <br />
+    <div id="draggable" class="ui-widget-content" style="width:350px;height:350px;border:1px solid blue">
+        <img id="dragImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1122px-Wikipedia-logo-v2.svg.png" width="350" height="350" alt="Alternate Text" draggable="true" />
     </div>
-    <img id="drag1"
-         src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/1122px-Wikipedia-logo-v2.svg.png"
-         draggable="true" ondragstart="drag(event)" width="350" height="350">
-</body>
+    <br />
+    <div id="droppable" class="ui-widget-header" style="width:350px;height:350px;border:1px solid blue">
+        
+    </div>
 </html>
